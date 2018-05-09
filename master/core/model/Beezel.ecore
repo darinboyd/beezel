@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="project" nsURI="http://beezel.org/project" nsPrefix="project">
+  <eClassifiers xsi:type="ecore:EClass" name="Scenario" eSuperTypes="#//TestEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Steps" lowerBound="1" upperBound="-1"
+        eType="#//Step" containment="true" eOpposite="#//Step/Scenario"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Feature" lowerBound="1"
+        eType="#//Feature" eOpposite="#//Feature/Scenarios"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Step">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Handler" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Scenario" lowerBound="1"
+        eType="#//Scenario" eOpposite="#//Scenario/Steps"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Feature" eSuperTypes="#//TestEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Scenarios" upperBound="-1"
+        eType="#//Scenario" containment="true" eOpposite="#//Scenario/Feature"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="CodeBehindClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Story" lowerBound="1" eType="#//Story"
+        eOpposite="#//Story/Features"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Narrative" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Stories" upperBound="-1"
+        eType="#//Story" containment="true" eOpposite="#//Story/Project"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Tags" upperBound="-1" eType="#//Tag"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Story" eSuperTypes="#//TestEntity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Features" lowerBound="1"
+        upperBound="-1" eType="#//Feature" containment="true" eOpposite="#//Feature/Story"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Project" lowerBound="1"
+        eType="#//Project" eOpposite="#//Project/Stories"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Taggable" abstract="true" eSuperTypes="#//NamedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Tags" upperBound="-1" eType="#//Tag"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Tag" eSuperTypes="#//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="TestEntityStatus">
+    <eLiterals name="Active"/>
+    <eLiterals name="InActive" value="1"/>
+    <eLiterals name="InProgress" value="2"/>
+    <eLiterals name="Pending" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestEntity" abstract="true" eSuperTypes="#//NamedElement #//Taggable">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" lowerBound="1"
+        eType="#//TestEntityStatus" defaultValueLiteral="Active"/>
+  </eClassifiers>
+</ecore:EPackage>
