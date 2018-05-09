@@ -9,6 +9,12 @@ import org.beezel.core.model.project.project.Project;
  */
 public interface ProjectRunner {
 	
-	public ProjectRunnerResult run(String modelLocaation);
+	/**
+	 * Runs a full test project.
+	 * @param modelLocation - Location of the project model file.
+	 * @return
+	 */
+	public ProjectRunnerResult run(String modelLocation);
+	
 
 }
