@@ -32,5 +32,61 @@ public class ModelLoaderTest {
 		
 		Assert.assertTrue("model should not be null.", project != null);
 	}
+	
+	@Test
+	public void project_has_two_tags() {
+		
+		Assert.assertEquals(2, project.getTags().size());
+		
+	}
+	
+	@Test
+	public void project_has_one_story() {
+		
+		Assert.assertEquals(1, project.getStories().size());
+		
+	}
+	
+	@Test
+	public void story_has_one_tag() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getTags().size());
+		
+	}
+	
+	@Test
+	public void story_has_one_feature() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getFeatures().size());
+		
+	}
+	
+	@Test
+	public void feature_has_one_tag() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getFeatures().get(0).getTags().size());
+		
+	}
+	
+	@Test
+	public void feature_has_one_scenario() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getFeatures().get(0).getScenarios().size());
+		
+	}
+	
+	@Test
+	public void scenario_has_one_tag() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getFeatures().get(0).getScenarios().get(0).getTags().size());
+		
+	}
+	
+	@Test
+	public void scenario_has_one_step() {
+		
+		Assert.assertEquals(1, project.getStories().get(0).getFeatures().get(0).getScenarios().get(0).getSteps().size());
+		
+	}
 
 }
