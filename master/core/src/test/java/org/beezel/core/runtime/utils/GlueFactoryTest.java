@@ -39,6 +39,21 @@ public class GlueFactoryTest {
 		Assert.assertNotNull(factory.getInstance(className));
 		Assert.assertEquals(1, factory.getAllInstances().size());
 	}
+	
+	@Test
+	public void register_by__bad_name_throws_exception() {
+
+		
+		String className = "some.bad.class.name.NotReal";
+		try {
+			factory.addClass(className);
+		} catch (GlueFactoryException e) {
+			Assert.assertEquals(GlueFactoryException.class, e.getClass());
+		}
+
+		
+		Assert.assertEquals(0, factory.getAllInstances().size());
+	}
 
 	@Test
 	public void register_by_class_object() throws GlueFactoryException {
