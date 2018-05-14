@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.beezel.core.runtime.GlueFactory;
+import org.beezel.core.runtime.GlueFactoryException;
 
 /**
  * Implementation of the {@link GlueFactory} interface.
@@ -20,42 +21,65 @@ public class GlueFactoryImpl implements GlueFactory {
 	private Map<String, Object> instances = new HashMap<String, Object>();
 
 	@Override
-	public void addClass(String glueClassName) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		
+	public void addClass(String glueClassName) throws GlueFactoryException{
 		if(instanceExists(glueClassName)) {
 			return;
 		}
 		
-		Class<?> glueClass = Class.forName(glueClassName);
-		addClass(glueClass);
+		Class<?> glueClass;
+		
+		try {
+			
+			glueClass = Class.forName(glueClassName);
+			addClass(glueClass);			
+		
+		} catch (SecurityException | IllegalArgumentException | ClassNotFoundException e) {
+			
+			throw new GlueFactoryException(e);
+			
+		}
 		
 	}
 
 	@Override
-	public void addClass(Class<?> glueClass) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void addClass(Class<?> glueClass) throws GlueFactoryException {
 		
 		if(instanceExists(glueClass.getName())) {
 			return;
 		}
 		
-		Constructor<?> constructor = glueClass.getConstructor();
-		Object instance = constructor.newInstance();
+		Constructor<?> constructor;
+		try {
+			
+			constructor = glueClass.getConstructor();
+			Object instance = constructor.newInstance();
+			
+			instances.put(glueClass.getName(), instance);
+			
+		} catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			
+			throw new GlueFactoryException(e);
+			
+		}
 		
-		instances.put(glueClass.getName(), instance);
 		
 	}
 
 	@Override
-	public void addClassesByName(List<String> glueClassNames) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void addClassesByName(List<String> glueClassNames) throws GlueFactoryException {
 		
 		for(String className : glueClassNames) {
-			addClass(className);
+			try {
+				addClass(className);
+			} catch (SecurityException | IllegalArgumentException e) {
+				throw new GlueFactoryException(e);
+			}
 		}
 		
 	}
 
 	@Override
-	public void addClasses(List<Class<?>> glueClasses) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void addClasses(List<Class<?>> glueClasses) throws GlueFactoryException {
 		
 		for(Class<?> glueClass : glueClasses) {
 			addClass(glueClass);

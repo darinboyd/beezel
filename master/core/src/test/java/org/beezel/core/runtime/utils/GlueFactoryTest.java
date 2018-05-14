@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.beezel.core.runtime.GlueFactory;
+import org.beezel.core.runtime.GlueFactoryException;
 import org.beezel.core.runtime.impl.GlueFactoryImpl;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,7 +29,7 @@ public class GlueFactoryTest {
 	}
 
 	@Test
-	public void register_by_name() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void register_by_name() throws GlueFactoryException {
 
 		// use any valid class name and register by name.
 		// I'm using the factories class name;
@@ -40,7 +41,7 @@ public class GlueFactoryTest {
 	}
 
 	@Test
-	public void register_by_class_object() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void register_by_class_object() throws GlueFactoryException {
 
 		factory.addClass(GlueFactoryImpl.class);
 
@@ -49,7 +50,7 @@ public class GlueFactoryTest {
 	}
 
 	@Test
-	public void register_by_name_list() throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void register_by_name_list() throws GlueFactoryException {
 		
 		List<String> classNames = new ArrayList<String>();
 		classNames.add(String.class.getName());
@@ -61,7 +62,7 @@ public class GlueFactoryTest {
 	}
 
 	@Test
-	public void register_by_class_list() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void register_by_class_list() throws GlueFactoryException {
 		
 		List<Class<?>> classes = new ArrayList<Class<?>>();
 		classes.add(this.getClass());
@@ -74,7 +75,7 @@ public class GlueFactoryTest {
 	}
 
 	@Test
-	public void duplicates_are_not_registered() throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public void duplicates_are_not_registered() throws GlueFactoryException {
 		
 		// register twice to see if there is still only one instance registered.
 		factory.addClass(GlueFactoryImpl.class);

@@ -1,6 +1,5 @@
 package org.beezel.core.runtime;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -13,52 +12,37 @@ public interface GlueFactory {
 	/**
 	 * Adds an instance of a class to the registry by its fully qualified name.  Duplicates are ignored.
 	 * @param glueClassName - fully qualified name of the class.
-	 * @throws ClassNotFoundException 
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 *  
+	 * @throws GlueFactoryException 
+	 * 
 	 */
-	public void addClass(String glueClassName) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public void addClass(String glueClassName) throws GlueFactoryException;
 	
 	/**
 	 * Adds an instance of a class to the registry.  Duplicates are ignored.
 	 * @param glueClass - class object from which to create and register an instance.
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
+	 * 
+	 * @throws GlueFactoryException 
+	 * 
 	 */
-	public void addClass(Class<?> glueClass) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public void addClass(Class<?> glueClass) throws GlueFactoryException;
 	
 	/**
 	 * Adds multiple class instances to the registry.  Duplicates are ignored.
 	 * @param glusClassNames - List of fully qualified class names.
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
-	 * @throws ClassNotFoundException 
+	 * 
+	 * @throws GlueFactoryException 
+	 *
 	 */
-	public void addClassesByName(List<String> glueClassNames) throws ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public void addClassesByName(List<String> glueClassNames) throws GlueFactoryException;
 	
 	/**
 	 * Adds multiple class instances to the registry.  Duplicates are ignored.
 	 * @param glueClasses - list of class objects from which to create and register an instances.
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws InstantiationException 
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
+	 * 
+	 * @throws GlueFactoryException 
 	 */
-	public void addClasses(List<Class<?>> glueClasses) throws NoSuchMethodException, SecurityException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public void addClasses(List<Class<?>> glueClasses) throws GlueFactoryException;	
 	
 	/**
 	 * Retrieves an instance of a glue class from the registry.
