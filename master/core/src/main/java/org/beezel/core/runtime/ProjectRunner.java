@@ -11,10 +11,17 @@ public interface ProjectRunner {
 	
 	/**
 	 * Runs a full test project.
-	 * @param modelLocation - Location of the project model file.
+	 * @param projectModelLocation - Location of the project model file.
 	 * @return
 	 */
-	public ProjectRunnerResult run(String modelLocation);
+	public ProjectRunnerResult run(String projectModelLocation);
+	
+	/**
+	 * Runs a full test project.
+	 * @param project - Project instance.
+	 * @return
+	 */
+	public ProjectRunnerResult run(Project project);
 	
 
 }
