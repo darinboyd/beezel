@@ -2,15 +2,15 @@ package org.beezel.core.runtime.utils;
 
 import static org.junit.Assert.*;
 
-import org.beezel.core.runtime.ObjectFactory;
+import org.beezel.core.runtime.GlueFactory;
 import org.junit.Test;
 
 /**
- * {@link ObjectFactory} test fixture.
+ * {@link GlueFactory} test fixture.
  * @author Darin
  *
  */
-public class ObjectFactoryTest {
+public class GlueFactoryTest {
 
 	@Test
 	public void an_instance_of_the_codebehind_is_returned() {
