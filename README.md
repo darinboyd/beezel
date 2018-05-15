@@ -1,4 +1,4 @@
-# beezel
+# Beezel
 Beezel is a BDD testing framework for Java based on the Eclipse Modeling Framework and JUnit.
 
 Beezel differs from many frameworks in that it is based on a model. Having an upfront EMF model for a the test suite allows for a richer and more flexible information structure than annotation based frameworks.
