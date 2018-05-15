@@ -5,6 +5,7 @@ import java.util.List;
 import org.beezel.core.model.project.project.Tag;
 import org.beezel.core.runtime.FeatureRunnerResult;
 import org.beezel.core.runtime.ProjectRunnerResult;
+import org.beezel.core.runtime.StoryRunnerResult;
 import org.beezel.core.runtime.TestEntityResultStatus;
 
 /**
@@ -15,19 +16,19 @@ import org.beezel.core.runtime.TestEntityResultStatus;
 public class ProjectRunnerResultImpl implements ProjectRunnerResult {
 
 	@Override
-	public List<FeatureRunnerResult> getAllFeatureResults() {
+	public List<StoryRunnerResult> getAllStoryResults() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FeatureRunnerResult> getFeatureResultsByStatus(TestEntityResultStatus status) {
+	public List<StoryRunnerResult> getStoryResultsByStatus(TestEntityResultStatus status) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<FeatureRunnerResult> getFeatureResultsByTag(Tag tag) {
+	public List<StoryRunnerResult> getStoryResultsByTag(Tag tag) {
 		// TODO Auto-generated method stub
 		return null;
 	}

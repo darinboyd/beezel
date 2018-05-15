@@ -1,13 +1,10 @@
 package org.beezel.core.runtime.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.beezel.core.model.project.project.Feature;
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.Story;
-import org.beezel.core.model.project.project.TestEntityStatus;
 import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.ProjectRunner;
 import org.beezel.core.runtime.ProjectRunnerException;
@@ -26,6 +23,7 @@ public class ProjectRunnerImpl implements ProjectRunner {
 	
 	List<Story> activeStories;
 	Project project;
+	ProjectRunnerResult result;
 
 	@Override
 	public ProjectRunnerResult run(String projectModelLocation) throws ProjectRunnerException {
@@ -50,11 +48,11 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 		this.project = project;
 		
-		ProjectRunnerResult result = new ProjectRunnerResultImpl();
+		result = new ProjectRunnerResultImpl();
 		
 		for(Story story : project.getStories()) {
 			
-			// Rework Project Runner interface.
+			//TODO: Rework Project Runner interface.
 		}
 		
 		return result;

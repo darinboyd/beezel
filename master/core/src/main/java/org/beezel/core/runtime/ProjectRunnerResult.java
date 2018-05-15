@@ -2,8 +2,8 @@ package org.beezel.core.runtime;
 
 import java.util.List;
 
-import org.beezel.core.model.project.project.Feature;
 import org.beezel.core.model.project.project.Project;
+import org.beezel.core.model.project.project.Story;
 import org.beezel.core.model.project.project.Tag;
 
 /**
@@ -14,21 +14,21 @@ import org.beezel.core.model.project.project.Tag;
 public interface ProjectRunnerResult {
 	
 	/**
-	 * Returns all of the run results for the {@link Feature}s in the {@link Project}
+	 * Returns all of the run results for the {@link Story}s in the {@link Project}
 	 * @return
 	 */
-	public List<FeatureRunnerResult> getAllFeatureResults();
+	public List<StoryRunnerResult> getAllStoryResults();
 	
 	/**
-	 * Returns the run results for the {@link Feature}s in the {@link Project} by status.
+	 * Returns the run results for the {@link Story}s in the {@link Project} by status.
 	 * @return
 	 */
-	public List<FeatureRunnerResult> getFeatureResultsByStatus(TestEntityResultStatus status);
+	public List<StoryRunnerResult> getStoryResultsByStatus(TestEntityResultStatus status);
 	
 	/**
-	 * Returns the run results for the {@link Feature}s in the {@link Project} with a specified {@link Tag}.
+	 * Returns the run results for the {@link Story}s in the {@link Project} with a specified {@link Tag}.
 	 * @return
 	 */
-	public List<FeatureRunnerResult> getFeatureResultsByTag(Tag tag);
+	public List<StoryRunnerResult> getStoryResultsByTag(Tag tag);
 
 }
