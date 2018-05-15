@@ -5,11 +5,14 @@ import java.util.List;
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.Story;
+import org.beezel.core.model.project.project.TestEntityStatus;
 import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.GlueFactoryException;
 import org.beezel.core.runtime.ProjectRunner;
 import org.beezel.core.runtime.ProjectRunnerException;
 import org.beezel.core.runtime.ProjectRunnerResult;
+import org.beezel.core.runtime.StoryRunnerResult;
+import org.beezel.core.runtime.TestEntityResultStatus;
 import org.beezel.core.utils.ModelLoader;
 import org.beezel.core.utils.ProjectModelUtils;
 
@@ -62,10 +65,19 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		for(Story story : project.getStories()) {
 			
 			//TODO: Rework Project Runner interface.
+			if(story.getStatus().equals(TestEntityStatus.ACTIVE)) {
+				
+				// run the story
+				
+			}else {
+				
+				result.getAllStoryResults().add(createSkippedStoryresutl(story));
+				
+			}
 		}
 		
 		return result;
-	}
+	}	
 
 	@Override
 	public GlueFactory getGlueFactory() {
@@ -93,5 +105,35 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 	}
 	
+	/**
+	 * Helper method creates an instance of {@link StoryRunnerResult} from a {@link Story} instance for skipped stories.
+	 * @param story
+	 * @return
+	 */
+	private StoryRunnerResult createSkippedStoryresutl(Story story) {
+		
+		StoryRunnerResult result = new StoryRunnerresultImpl();
+		result.setStory(story);
+		
+		switch (story.getStatus()) {
+		
+		case IN_ACTIVE:
+			result.setStatus(TestEntityResultStatus.Skipped);
+			break;
+			
+		case IN_PROGRESS:
+			result.setStatus(TestEntityResultStatus.InProgress);
+			break;
+			
+		case PENDING:
+			result.setStatus(TestEntityResultStatus.Pending);
+			break;
+
+		default:
+			break;
+		}
+		
+		return result;
+	}
 
 }
