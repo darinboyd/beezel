@@ -17,6 +17,8 @@ import org.beezel.core.runtime.GlueFactoryException;
  */
 public class ProjectModelUtils {
 	
+	//TODO: Test me
+	
 	/**
 	 * Returns a list of project features with the desired status.
 	 * @param project

@@ -6,10 +6,12 @@ import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.Story;
 import org.beezel.core.runtime.GlueFactory;
+import org.beezel.core.runtime.GlueFactoryException;
 import org.beezel.core.runtime.ProjectRunner;
 import org.beezel.core.runtime.ProjectRunnerException;
 import org.beezel.core.runtime.ProjectRunnerResult;
 import org.beezel.core.utils.ModelLoader;
+import org.beezel.core.utils.ProjectModelUtils;
 
 /**
  * Implementation of {@link ProjectRunner} interface.
@@ -50,6 +52,13 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 		result = new ProjectRunnerResultImpl();
 		
+		// register all of the Feature glue classes
+		try {
+			ProjectModelUtils.registerFeatureGlue(project, glueFactory);
+		} catch (GlueFactoryException e) {
+			throw new ProjectRunnerException(e);
+		}
+		
 		for(Story story : project.getStories()) {
 			
 			//TODO: Rework Project Runner interface.
@@ -83,11 +92,6 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		this.modelLoader = modelLoader;
 		
 	}
-	
-	private void loadActiveFeatureGlue() {
-		
-	}
-	
 	
 
 }

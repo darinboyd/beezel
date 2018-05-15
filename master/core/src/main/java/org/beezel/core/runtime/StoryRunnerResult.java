@@ -7,6 +7,18 @@ import org.beezel.core.model.project.project.Story;
  * @author Darin Boyd
  *
  */
-public interface StoryRunnerResult {
+public interface StoryRunnerResult extends RunnerResult {
+	
+	/**
+	 * Gets the project model Story
+	 * @return
+	 */
+	public Story getStory();
+	
+	/**
+	 * Sets the project model Story.
+	 * @param story
+	 */
+	public void setStory(Story story);
 
 }
