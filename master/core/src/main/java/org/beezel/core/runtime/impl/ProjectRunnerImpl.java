@@ -112,7 +112,7 @@ public class ProjectRunnerImpl implements ProjectRunner {
 	 */
 	private StoryRunnerResult createSkippedStoryresutl(Story story) {
 		
-		StoryRunnerResult result = new StoryRunnerresultImpl();
+		StoryRunnerResult result = new StoryRunnerResultImpl();
 		result.setStory(story);
 		
 		switch (story.getStatus()) {

@@ -9,7 +9,7 @@ import org.beezel.core.runtime.TestEntityResultStatus;
  * @author Darin Boyd
  *
  */
-public class StoryRunnerresultImpl implements StoryRunnerResult {
+public class StoryRunnerResultImpl implements StoryRunnerResult {
 
 	//TODO: Test me
 	@Override
