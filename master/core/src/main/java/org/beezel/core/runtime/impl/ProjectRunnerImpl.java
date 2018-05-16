@@ -5,16 +5,17 @@ import java.util.List;
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.Story;
-import org.beezel.core.model.project.project.TestEntityStatus;
 import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.GlueFactoryException;
 import org.beezel.core.runtime.ProjectRunner;
 import org.beezel.core.runtime.ProjectRunnerException;
 import org.beezel.core.runtime.ProjectRunnerResult;
-import org.beezel.core.runtime.StoryRunnerResult;
-import org.beezel.core.runtime.TestEntityResultStatus;
+import org.beezel.core.runtime.StoryRunner;
+import org.beezel.core.runtime.StoryRunnerException;
 import org.beezel.core.utils.ModelLoader;
 import org.beezel.core.utils.ProjectModelUtils;
+
+//TODO: Test me
 
 /**
  * Implementation of {@link ProjectRunner} interface.
@@ -55,26 +56,22 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 		result = new ProjectRunnerResultImpl();
 		
+		StoryRunner storyRunner = new StoryRunnerImpl();
+		storyRunner.setGlueFactory(glueFactory);
+		
 		// register all of the Feature glue classes
 		try {
-			ProjectModelUtils.registerFeatureGlue(project, glueFactory);
-		} catch (GlueFactoryException e) {
-			throw new ProjectRunnerException(e);
-		}
-		
-		for(Story story : project.getStories()) {
 			
-			//TODO: Rework Project Runner interface.
-			if(story.getStatus().equals(TestEntityStatus.ACTIVE)) {
+			ProjectModelUtils.registerFeatureGlue(project, glueFactory);
+			
+			for(Story story : project.getStories()) {
 				
-				// run the story
-				
-			}else {
-				
-				result.getAllStoryResults().add(createSkippedStoryresutl(story));
-				
+				result.getAllStoryResults().add(storyRunner.run(story));
 			}
-		}
+			
+		} catch (GlueFactoryException | StoryRunnerException e) {
+			throw new ProjectRunnerException(e);
+		}		
 		
 		return result;
 	}	
@@ -105,35 +102,6 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 	}
 	
-	/**
-	 * Helper method creates an instance of {@link StoryRunnerResult} from a {@link Story} instance for skipped stories.
-	 * @param story
-	 * @return
-	 */
-	private StoryRunnerResult createSkippedStoryresutl(Story story) {
-		
-		StoryRunnerResult result = new StoryRunnerResultImpl();
-		result.setStory(story);
-		
-		switch (story.getStatus()) {
-		
-		case IN_ACTIVE:
-			result.setStatus(TestEntityResultStatus.Skipped);
-			break;
-			
-		case IN_PROGRESS:
-			result.setStatus(TestEntityResultStatus.InProgress);
-			break;
-			
-		case PENDING:
-			result.setStatus(TestEntityResultStatus.Pending);
-			break;
-
-		default:
-			break;
-		}
-		
-		return result;
-	}
+	
 
 }

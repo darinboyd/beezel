@@ -7,6 +7,7 @@ import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.StoryRunner;
 import org.beezel.core.runtime.StoryRunnerException;
 import org.beezel.core.runtime.StoryRunnerResult;
+import org.beezel.core.runtime.TestEntityResultStatus;
 
 /**
  * Implementation of {@link StoryRunner} interface
@@ -29,7 +30,7 @@ public class StoryRunnerImpl implements StoryRunner {
 			if(feature.getStatus().equals(TestEntityStatus.ACTIVE)) {
 				//run it
 			}else {
-				//skip it
+				result = createSkippedStoryresutl(story);
 			}
 			
 		}
@@ -50,4 +51,34 @@ public class StoryRunnerImpl implements StoryRunner {
 		
 	}
 
+	/**
+	 * Helper method creates an instance of {@link StoryRunnerResult} from a {@link Story} instance for skipped stories.
+	 * @param story
+	 * @return
+	 */
+	private StoryRunnerResult createSkippedStoryresutl(Story story) {
+		
+		StoryRunnerResult result = new StoryRunnerResultImpl();
+		result.setStory(story);
+		
+		switch (story.getStatus()) {
+		
+		case IN_ACTIVE:
+			result.setStatus(TestEntityResultStatus.Skipped);
+			break;
+			
+		case IN_PROGRESS:
+			result.setStatus(TestEntityResultStatus.InProgress);
+			break;
+			
+		case PENDING:
+			result.setStatus(TestEntityResultStatus.Pending);
+			break;
+
+		default:
+			break;
+		}
+		
+		return result;
+	}
 }

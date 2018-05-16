@@ -1,7 +1,5 @@
 package org.beezel.core.model.utils;
 
-import static org.junit.Assert.*;
-
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.utils.ModelLoader;
