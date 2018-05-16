@@ -3,6 +3,7 @@ package org.beezel.core.runtime.impl;
 import org.beezel.core.model.project.project.Feature;
 import org.beezel.core.model.project.project.Story;
 import org.beezel.core.model.project.project.TestEntityStatus;
+import org.beezel.core.runtime.FeatureRunner;
 import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.StoryRunner;
 import org.beezel.core.runtime.StoryRunnerException;
@@ -18,6 +19,7 @@ public class StoryRunnerImpl implements StoryRunner {
 
 	//TODO: Test me
 	private GlueFactory glueFactory;
+	private FeatureRunner featureRunner;
 	
 	@Override
 	public StoryRunnerResult run(Story story) throws StoryRunnerException {
@@ -80,5 +82,17 @@ public class StoryRunnerImpl implements StoryRunner {
 		}
 		
 		return result;
+	}
+
+	@Override
+	public FeatureRunner getFeatureRunner() {
+		
+		return featureRunner;
+	}
+
+	@Override
+	public void setFeatureRunner(FeatureRunner featureRunner) {
+		
+		this.featureRunner = featureRunner;
 	}
 }
