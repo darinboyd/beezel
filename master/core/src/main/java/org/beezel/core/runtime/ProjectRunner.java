@@ -25,16 +25,16 @@ public interface ProjectRunner {
 	public ProjectRunnerResult run(Project project) throws ProjectRunnerException;
 	
 	/**
-	 * Gets the {@link GlueFactory} instance.
+	 * Gets the {@link StoryRunner} instance.
 	 * @return
 	 */
-	public GlueFactory getGlueFactory();
+	public StoryRunner getStoryRunner();
 	
 	/**
-	 * Sets the {@link GlueFactory} instance.
-	 * @param glueFactory
+	 * Sets the {@link StoryRunner} instance.
+	 * @param storyRunner
 	 */
-	public void setGlueFactory(GlueFactory glueFactory);
+	public void setStoryRunner(StoryRunner storyRunner);
 	
 	/**
 	 * Gets the {@link ModelLoader} instance.
@@ -47,6 +47,12 @@ public interface ProjectRunner {
 	 * @param modelLoader
 	 */
 	public void setModelLoader(ModelLoader<Project> modelLoader);
+
+	/**
+	 * Project model
+	 * @return
+	 */
+	Project getProject();
 	
 
 }

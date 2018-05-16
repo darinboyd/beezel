@@ -1,11 +1,8 @@
 package org.beezel.core.runtime.impl;
 
-import java.util.List;
-
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.Story;
-import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.GlueFactoryException;
 import org.beezel.core.runtime.ProjectRunner;
 import org.beezel.core.runtime.ProjectRunnerException;
@@ -24,11 +21,10 @@ import org.beezel.core.utils.ProjectModelUtils;
  */
 public class ProjectRunnerImpl implements ProjectRunner {
 	
-	GlueFactory glueFactory;
-	ModelLoader<Project> modelLoader;
+	private StoryRunner storyRunner;
+	private ModelLoader<Project> modelLoader;
 	
-	List<Story> activeStories;
-	Project project;
+	private Project project;
 	ProjectRunnerResult result;
 
 	@Override
@@ -54,15 +50,12 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		
 		this.project = project;
 		
-		result = new ProjectRunnerResultImpl();
-		
-		StoryRunner storyRunner = new StoryRunnerImpl();
-		storyRunner.setGlueFactory(glueFactory);
-		
+		result = new ProjectRunnerResultImpl();		
+				
 		// register all of the Feature glue classes
 		try {
 			
-			ProjectModelUtils.registerFeatureGlue(project, glueFactory);
+			ProjectModelUtils.registerFeatureGlue(project, storyRunner.getGlueFactory());
 			
 			for(Story story : project.getStories()) {
 				
@@ -77,15 +70,15 @@ public class ProjectRunnerImpl implements ProjectRunner {
 	}	
 
 	@Override
-	public GlueFactory getGlueFactory() {
+	public StoryRunner getStoryRunner() {
 		
-		return glueFactory;
+		return storyRunner;
 	}
 
 	@Override
-	public void setGlueFactory(GlueFactory glueFactory) {
+	public void setStoryRunner(StoryRunner storyRunner) {
 		
-		this.glueFactory = glueFactory;
+		this.storyRunner = storyRunner;
 		
 	}
 
@@ -101,6 +94,12 @@ public class ProjectRunnerImpl implements ProjectRunner {
 		this.modelLoader = modelLoader;
 		
 	}
+
+	@Override
+	public Project getProject() {
+		return project;
+	}
+	
 	
 	
 

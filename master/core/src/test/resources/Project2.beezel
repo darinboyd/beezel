@@ -4,7 +4,7 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:project="http://beezel.org/project"
-    xsi:schemaLocation="http://beezel.org/project Beezel.ecore"
+    xsi:schemaLocation="http://beezel.org/project ../../../model/Beezel.ecore"
     Name="Beezel"
     Description="A testing framework.">
   <Stories Name="Test Runner"
@@ -15,7 +15,7 @@
         Name="Run a Test"
         Description=""
         Tags="//@Tags.1"
-        CodeBehindClass="RunATest.java">
+        CodeBehindClass="org.beezel.core.runtime.utils.testglue.FeatureOne">
       <Scenarios
           Name="Test Runner Loads a Project Model"
           Tags="//@Tags.1">
@@ -33,7 +33,7 @@
         Name="Run a Test"
         Description=""
         Tags="//@Tags.1"
-        CodeBehindClass="RunATest.java">
+        CodeBehindClass="org.beezel.core.runtime.utils.testglue.FeatureTwo">
       <Scenarios
           Name="Test Runner Loads a Project Model"
           Tags="//@Tags.1">
@@ -46,7 +46,7 @@
         Name="Feature Two"
         Description=""
         Tags="//@Tags.1"
-        CodeBehindClass="RunATest.java">
+        CodeBehindClass="org.beezel.core.runtime.utils.testglue.FeatureThree">
       <Scenarios
           Name="Do something"
           Tags="//@Tags.1">

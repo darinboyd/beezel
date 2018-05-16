@@ -8,6 +8,9 @@ import org.beezel.core.model.project.project.Feature;
 import org.beezel.core.model.project.project.Project;
 import org.beezel.core.model.project.project.ProjectPackage;
 import org.beezel.core.model.project.project.TestEntityStatus;
+import org.beezel.core.runtime.GlueFactory;
+import org.beezel.core.runtime.GlueFactoryException;
+import org.beezel.core.runtime.impl.GlueFactoryImpl;
 import org.beezel.core.utils.ModelLoader;
 import org.beezel.core.utils.ProjectModelUtils;
 import org.junit.Assert;
@@ -45,6 +48,16 @@ public class ProjectModelUtilsTest {
 		List<Feature> features = ProjectModelUtils.getStoryFeaturesByStatus(project.getStories().get(1), TestEntityStatus.ACTIVE);
 		
 		Assert.assertEquals(2, features.size());
+		
+	}
+	
+	@Test
+	public void register_feature_glue_registers_three_instances() throws GlueFactoryException {
+
+		GlueFactory glueFactory = new GlueFactoryImpl();
+		ProjectModelUtils.registerFeatureGlue(project, glueFactory);
+		
+		Assert.assertEquals(3, glueFactory.getAllInstances().size());
 		
 	}
 	
