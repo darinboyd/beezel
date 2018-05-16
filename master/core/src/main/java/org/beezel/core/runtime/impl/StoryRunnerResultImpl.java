@@ -1,6 +1,10 @@
 package org.beezel.core.runtime.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.beezel.core.model.project.project.Story;
+import org.beezel.core.runtime.FeatureRunnerResult;
 import org.beezel.core.runtime.StoryRunnerResult;
 import org.beezel.core.runtime.TestEntityResultStatus;
 
@@ -10,30 +14,40 @@ import org.beezel.core.runtime.TestEntityResultStatus;
  *
  */
 public class StoryRunnerResultImpl implements StoryRunnerResult {
-
+	
+	private Story story;
+	private TestEntityResultStatus status;
+	private List<FeatureRunnerResult> allFeatureResults = new ArrayList<FeatureRunnerResult>();
+	
 	//TODO: Test me
 	@Override
 	public TestEntityResultStatus getStatus() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return status;
 	}
 
 	@Override
 	public void setStatus(TestEntityResultStatus status) {
-		// TODO Auto-generated method stub
 		
+		this.status = status;
 	}
 
 	@Override
 	public Story getStory() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return story;
 	}
 
 	@Override
 	public void setStory(Story story) {
-		// TODO Auto-generated method stub
 		
+		this.story = story;
+	}
+
+	@Override
+	public List<FeatureRunnerResult> getAllFeatureResults() {
+		
+		return allFeatureResults;
 	}
 
 }

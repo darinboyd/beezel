@@ -1,5 +1,7 @@
 package org.beezel.core.runtime;
 
+import java.util.List;
+
 import org.beezel.core.model.project.project.Story;
 
 /**
@@ -8,6 +10,12 @@ import org.beezel.core.model.project.project.Story;
  *
  */
 public interface StoryRunnerResult extends RunnerResult {
+	
+	/**
+	 * All results from the features contained in the story.
+	 * @return
+	 */
+	public List<FeatureRunnerResult> getAllFeatureResults();
 	
 	/**
 	 * Gets the project model Story
