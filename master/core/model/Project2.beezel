@@ -25,6 +25,37 @@
       </Scenarios>
     </Features>
   </Stories>
+  <Stories Name="Another Story"
+      Description="This is a top level epic"
+      Tags="//@Tags.0"
+      Text="As a developer, I need to be able to run tests.">
+    <Features
+        Name="Run a Test"
+        Description=""
+        Tags="//@Tags.1"
+        CodeBehindClass="RunATest.java">
+      <Scenarios
+          Name="Test Runner Loads a Project Model"
+          Tags="//@Tags.1">
+        <Steps
+            Text="This step should execute."
+            Handler="runMe"/>
+      </Scenarios>
+    </Features>
+    <Features
+        Name="Feature Two"
+        Description=""
+        Tags="//@Tags.1"
+        CodeBehindClass="RunATest.java">
+      <Scenarios
+          Name="Do something"
+          Tags="//@Tags.1">
+        <Steps
+            Text="Step One"
+            Handler="scenario1_step1"/>
+      </Scenarios>
+    </Features>
+  </Stories>
   <Tags Name="Tag 1"
       Description="Top level tag for testing"/>
   <Tags Name="Runner"/>

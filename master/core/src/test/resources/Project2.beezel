@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="ASCII"?>
+<project:Project
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:project="http://beezel.org/project"
+    xsi:schemaLocation="http://beezel.org/project Beezel.ecore"
+    Name="Beezel"
+    Description="A testing framework.">
+  <Stories Name="Test Runner"
+      Description="This is a top level epic"
+      Tags="//@Tags.0"
+      Text="As a developer, I need to be able to run tests.">
+    <Features
+        Name="Run a Test"
+        Description=""
+        Tags="//@Tags.1"
+        CodeBehindClass="RunATest.java">
+      <Scenarios
+          Name="Test Runner Loads a Project Model"
+          Tags="//@Tags.1">
+        <Steps
+            Text="This step should execute."
+            Handler="runMe"/>
+      </Scenarios>
+    </Features>
+  </Stories>
+  <Stories Name="Another Story"
+      Description="This is a top level epic"
+      Tags="//@Tags.0"
+      Text="As a developer, I need to be able to run tests.">
+    <Features
+        Name="Run a Test"
+        Description=""
+        Tags="//@Tags.1"
+        CodeBehindClass="RunATest.java">
+      <Scenarios
+          Name="Test Runner Loads a Project Model"
+          Tags="//@Tags.1">
+        <Steps
+            Text="This step should execute."
+            Handler="runMe"/>
+      </Scenarios>
+    </Features>
+    <Features
+        Name="Feature Two"
+        Description=""
+        Tags="//@Tags.1"
+        CodeBehindClass="RunATest.java">
+      <Scenarios
+          Name="Do something"
+          Tags="//@Tags.1">
+        <Steps
+            Text="Step One"
+            Handler="scenario1_step1"/>
+      </Scenarios>
+    </Features>
+  </Stories>
+  <Tags Name="Tag 1"
+      Description="Top level tag for testing"/>
+  <Tags Name="Runner"/>
+</project:Project>
