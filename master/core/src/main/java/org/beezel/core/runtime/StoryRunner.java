@@ -7,8 +7,7 @@ import org.beezel.core.model.project.project.Story;
  * @author Darin Boyd
  *
  */
-public interface StoryRunner {
-	
+public interface StoryRunner {	
 		
 	/**
 	 * Runs a {@link Story}.
@@ -27,7 +26,19 @@ public interface StoryRunner {
 	 * Sets the {@link GlueFactory} instance.
 	 * @param glueFactory
 	 */
-	public void setGlueFactory(GlueFactory glueFactory);	
+	public void setGlueFactory(GlueFactory glueFactory);
+	
+	/**
+	 * Gets the {@link FeatureRunner} instance.
+	 * @return
+	 */
+	public FeatureRunner getFeatureRunner();
+	
+	/**
+	 * Sets the {@link FeatureRunner} instance.
+	 * @param featureRunner
+	 */
+	public void setFeatureRunner(FeatureRunner featureRunner);
 	
 
 }
