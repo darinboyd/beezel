@@ -16,5 +16,17 @@ public interface FeatureRunner {
 	 * @return
 	 */
 	public FeatureRunnerResult run(GlueFactory glueFactory, Feature feature);
+	
+	/**
+	 * Returns the {@link ScenarioRunner}
+	 * @return
+	 */
+	public ScenarioRunner getScenarioRunner();
+	
+	/**
+	 * Sets the {@link ScenarioRunner}
+	 * @param scenarioRunner
+	 */
+	public void setScenarioRunner(ScenarioRunner scenarioRunner);
 
 }

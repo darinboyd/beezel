@@ -15,7 +15,7 @@ public interface FeatureRunnerResult extends RunnerResult {
 	 * Returns all scenario results.
 	 * @return
 	 */
-	public List<ScenarioRunnerResult> getAllStoryRunnerresults();
+	public List<ScenarioRunnerResult> getAllScenarioRunnerResults();
 	
 	/**
 	 * Returns scenario results by status.
