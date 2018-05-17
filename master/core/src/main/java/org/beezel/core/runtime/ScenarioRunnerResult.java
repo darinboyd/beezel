@@ -7,6 +7,6 @@ import org.beezel.core.model.project.project.Feature;
  * @author Darin Boyd
  *
  */
-public interface FeatureRunnerResult extends RunnerResult {
+public interface ScenarioRunnerResult {
 
 }

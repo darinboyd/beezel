@@ -20,20 +20,29 @@ public class StoryRunnerImpl implements StoryRunner {
 	//TODO: Test me
 	private GlueFactory glueFactory;
 	private FeatureRunner featureRunner;
+	private Story story;
 	
 	@Override
 	public StoryRunnerResult run(Story story) throws StoryRunnerException {
 		
-		StoryRunnerResult result = new StoryRunnerResultImpl();
+		this.story = story;
+		
+		StoryRunnerResult result = null;
+		
+		// if the story is not marked as active, skip it and return.
+		if(story.getStatus() != TestEntityStatus.ACTIVE) {
+			
+			createSkippedStoryResult();
+			return result;
+		}
+		
+		result = new StoryRunnerResultImpl();
 		result.setStory(story);
 		
+		// run the features.		
 		for(Feature feature : story.getFeatures()) {
 			
-			if(feature.getStatus().equals(TestEntityStatus.ACTIVE)) {
-				//run it
-			}else {
-				result = createSkippedStoryresutl(story);
-			}
+			result.getAllFeatureResults().add(featureRunner.run(glueFactory, feature));
 			
 		}
 		
@@ -58,7 +67,7 @@ public class StoryRunnerImpl implements StoryRunner {
 	 * @param story
 	 * @return
 	 */
-	private StoryRunnerResult createSkippedStoryresutl(Story story) {
+	private StoryRunnerResult createSkippedStoryResult() {
 		
 		StoryRunnerResult result = new StoryRunnerResultImpl();
 		result.setStory(story);
@@ -94,5 +103,11 @@ public class StoryRunnerImpl implements StoryRunner {
 	public void setFeatureRunner(FeatureRunner featureRunner) {
 		
 		this.featureRunner = featureRunner;
+	}
+
+	@Override
+	public Story getStory() {
+		
+		return story;
 	}
 }

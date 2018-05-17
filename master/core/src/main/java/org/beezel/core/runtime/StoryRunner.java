@@ -40,5 +40,11 @@ public interface StoryRunner {
 	 */
 	public void setFeatureRunner(FeatureRunner featureRunner);
 	
+	/**
+	 * Gets the {@link Story} instance.
+	 * @return
+	 */
+	public Story getStory();
+	
 
 }

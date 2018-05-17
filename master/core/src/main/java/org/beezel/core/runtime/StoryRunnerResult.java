@@ -18,6 +18,12 @@ public interface StoryRunnerResult extends RunnerResult {
 	public List<FeatureRunnerResult> getAllFeatureResults();
 	
 	/**
+	 * Returns results by status.
+	 * @return
+	 */
+	public List<FeatureRunnerResult> getFeatureResultsByStatus(TestEntityResultStatus status);
+	
+	/**
 	 * Gets the project model Story
 	 * @return
 	 */

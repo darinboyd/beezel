@@ -50,4 +50,18 @@ public class StoryRunnerResultImpl implements StoryRunnerResult {
 		return allFeatureResults;
 	}
 
+	@Override
+	public List<FeatureRunnerResult> getFeatureResultsByStatus(TestEntityResultStatus status) {
+		
+		List<FeatureRunnerResult> results = new ArrayList<FeatureRunnerResult>();
+		
+		for(FeatureRunnerResult result : allFeatureResults) {
+			if(result.getStatus() == status) {
+				results.add(result);
+			}
+		}
+		
+		return null;
+	}
+
 }
