@@ -2,11 +2,14 @@ package org.beezel.core.runtime.impl;
 
 import org.beezel.core.model.project.project.Feature;
 import org.beezel.core.model.project.project.Scenario;
+import org.beezel.core.model.project.project.Story;
 import org.beezel.core.model.project.project.TestEntityStatus;
 import org.beezel.core.runtime.FeatureRunner;
 import org.beezel.core.runtime.FeatureRunnerResult;
 import org.beezel.core.runtime.GlueFactory;
 import org.beezel.core.runtime.ScenarioRunner;
+import org.beezel.core.runtime.StoryRunnerResult;
+import org.beezel.core.runtime.TestEntityResultStatus;
 
 /**
  * Implementation of {@link FeatureRunner} interface
@@ -15,18 +18,21 @@ import org.beezel.core.runtime.ScenarioRunner;
  */
 public class FeatureRunnerImpl implements FeatureRunner{
 
+	//TODO: Test me
 	private ScenarioRunner scenarioRunner;
+	private Feature feature;
 	
 	@Override
 	public FeatureRunnerResult run(GlueFactory glueFactory, Feature feature) {
+		
+		this.feature = feature;
 		
 		FeatureRunnerResult result = null;
 		
 		// if the Feature is not active, don't run it
 		if(feature.getStatus() != TestEntityStatus.ACTIVE) {
 			
-			//TODO: set up a result and return it
-			return result;
+			return createSkippedStoryResult();
 		}
 		
 		result = new FeatureRunnerResultImpl();
@@ -52,6 +58,41 @@ public class FeatureRunnerImpl implements FeatureRunner{
 		
 		this.scenarioRunner = scenarioRunner;
 		
+	}
+	
+	/**
+	 * Helper method creates an instance of {@link FeatureRunnerResult} from a {@link Story} instance for skipped stories.
+	 * @return
+	 */
+	private FeatureRunnerResult createSkippedStoryResult() {
+		
+		FeatureRunnerResult result = new FeatureRunnerResultImpl();
+		result.setFeature(feature);
+		
+		switch (feature.getStatus()) {
+		
+		case IN_ACTIVE:
+			result.setStatus(TestEntityResultStatus.Skipped);
+			break;
+			
+		case IN_PROGRESS:
+			result.setStatus(TestEntityResultStatus.InProgress);
+			break;
+			
+		case PENDING:
+			result.setStatus(TestEntityResultStatus.Pending);
+			break;
+
+		default:
+			break;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public Feature getFeature() {
+		return feature;
 	}
 
 }

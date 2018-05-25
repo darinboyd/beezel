@@ -28,5 +28,11 @@ public interface FeatureRunner {
 	 * @param scenarioRunner
 	 */
 	public void setScenarioRunner(ScenarioRunner scenarioRunner);
+	
+	/**
+	 * Gets the model {@link Feature}
+	 * @return
+	 */
+	public Feature getFeature();
 
 }
